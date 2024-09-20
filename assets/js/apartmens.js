@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('http://localhost:8080/api/properties') 
+    fetch('http://localhost:8080/api/properties/public') 
         .then(response => response.json())
         .then(data => {
             const propertiesSection = document.getElementById('properties');

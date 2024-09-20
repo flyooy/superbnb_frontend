@@ -17,4 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
         registerBtn.classList.add('active');
         loginBtn.classList.remove('active');
     });
+    
+    
 });
