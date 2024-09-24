@@ -17,9 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
         registerBtn.classList.add('active');
         loginBtn.classList.remove('active');
     });
-    // Handle login form submission
+
+    // Обработка отправки формы логина
     loginForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); 
+        event.preventDefault();
 
         const email = document.getElementById('loginEmail').value;
         const password = document.getElementById('loginPassword').value;
@@ -30,23 +31,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email: email, password: password })
+                body: JSON.stringify({ email, password }),
+               
             });
 
             if (response.ok) {
-              
-                window.location.href = '/properties.html'; 
+                
+                window.location.href = '/properties.html';
             } else {
-               
-                const errorData = await response.json();
-                alert('Login failed: ' + errorData.message);
+                const errorText = await response.text();
+                alert('Login failed: ' + errorText);
             }
         } catch (error) {
             console.error('Error during login:', error);
+            alert('An error occurred during login.');
         }
     });
-    
-    // Handle registration form submission
+
+    // Обработка отправки формы регистрации
     registerForm.addEventListener('submit', async (event) => {
         event.preventDefault();
 
@@ -60,19 +62,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ username: name, email: email, password: password })
+                body: JSON.stringify({ username: name, email, password })
             });
 
             if (response.ok) {
-               
-                window.location.href = '/properties.html'; 
+                window.location.href = '/properties.html';
             } else {
-               
                 const errorData = await response.json();
                 alert('Registration failed: ' + errorData.message);
             }
         } catch (error) {
             console.error('Error during registration:', error);
+            alert('An error occurred during registration.');
         }
     });
 });
